@@ -12,7 +12,7 @@ WORKDIR /tmp
 RUN \
   apt-get update -y && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y \
-  automake build-essential curl
+  automake build-essential curl python phantomjs
   
 # verify gpg and sha256: http://nodejs.org/dist/v0.10.31/SHASUMS256.txt.asc
 RUN gpg --keyserver pool.sks-keyservers.net --recv-keys 7937DFD2AB06298B2293C3187D33FF9D0246406D 114F43EE0176B71C7BC219DD50A3051F888C628D
@@ -40,10 +40,13 @@ RUN apt-get remove -y automake build-essential curl \
     && rm -rf /var/lib/cache /var/lib/log \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && npm cache clear
+
+VOLUME ["/app"]
 	
-COPY dev-entrypoint.sh /entrypoint.sh
-RUN chmod +x entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+ADD dev-entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh	
 	
 #Exposing port, prepare app & run
 EXPOSE $PORT
+ENTRYPOINT ["/entrypoint.sh"]
+CMD []
