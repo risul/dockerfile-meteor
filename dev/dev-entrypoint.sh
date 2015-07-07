@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-cd /app
+cd /var/app
 
 #Check if we have been given $SETTINGS_FILE
 if [[ $SETTINGS_FILE ]]; then

@@ -41,7 +41,7 @@ RUN apt-get remove -y automake build-essential curl \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && npm cache clear
 
-VOLUME ["/app"]
+VOLUME ["/var/app"]
 	
 ADD dev-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh	
