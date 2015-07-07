@@ -49,4 +49,3 @@ RUN chmod +x /entrypoint.sh
 #Exposing port, prepare app & run
 EXPOSE $PORT
 ENTRYPOINT ["/entrypoint.sh"]
-CMD []
