@@ -41,11 +41,12 @@ RUN apt-get remove -y automake build-essential curl \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && npm cache clear
 
-VOLUME ["/var/app"]
+VOLUME /app
+WORKDIR /app
 	
 ADD dev-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh	
 	
 #Exposing port, prepare app & run
 EXPOSE $PORT
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT /entrypoint.sh
